@@ -15,9 +15,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.3.0
 
-      - name: Install Conftest
-        uses: instrumenta/conftest-action@master
-
       - name: Run OPA Policy Check
-        run: |
-          conftest test config.json --policy policy/
+        uses: instrumenta/conftest-action@master
+        with:
+          files: config.json
+          policy: policy
+          namespace: main
+          combine: false
+          output: stdout
